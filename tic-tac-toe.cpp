@@ -1,7 +1,9 @@
 #include <iostream>
-//#include <dos> //for delay
 #include <string.h>
-int winflag = 0;
+
+int winflagx = 0;
+int winflago = 0;
+
 char grid[3][3] = {{'1', '2', '3'},
                    {'4', '5', '6'},
                    {'7', '8', '9'}};
@@ -18,6 +20,7 @@ char winning[8][3] = {{'1', '2', '3'},
 void create_grid();
 void human_turn(); //human is X
 void check();
+void comp_turn();
 //
 //--------------
 // 1 |  2 |  3 |
@@ -37,6 +40,8 @@ int main()
 
         create_grid();
         human_turn();
+        check();
+        comp_turn();
         check();
     }
 }
@@ -59,6 +64,7 @@ void create_grid()
 void human_turn()
 {
     int input;
+a:
     cout << "enter turn" << endl;
     cin >> input;
     if (input != ' ')
@@ -77,6 +83,7 @@ void human_turn()
         if (grid[row][col] == 'X' || grid[row][col] == 'O')
         {
             cout << "that grid space is already taken" << endl;
+            goto a;
         }
         else if (input >= 1 && input <= 9)
         {
@@ -100,7 +107,8 @@ void check()
 
     for (int i = 0; i <= 7; i++)
     {
-        winflag = 0;
+        winflago = 0;
+        winflagx = 0;
 
         for (int j = 0; j <= 2; j++)
         {
@@ -119,16 +127,58 @@ void check()
             //cout << "row = " << row << "col =" << col << endl;
             if (grid[row][col] == 'X')
             {
-                winflag++;
+                winflagx++;
                 //cout << "wiflag = " << winflag;
                 // cout << " k=  " << k << endl;
             }
-            if (winflag == 3)
+            if (winflagx == 3)
             {
 
-                cout << "winner";
+                create_grid();
+                cout << "********X is the winnner********";
+                exit(0);
+            }
+
+            if (grid[row][col] == 'O')
+            {
+                winflago++;
+                //cout << "wiflag = " << winflag;
+                // cout << " k=  " << k << endl;
+            }
+            if (winflago == 3)
+            {
+
+                create_grid();
+                cout << "********O is the winnner********";
                 exit(0);
             }
         }
+    }
+}
+
+void comp_turn()
+{
+l:
+    int input = (rand() % 9 + 1);
+
+    int row = (input / 3);
+    int col = (input % 3) - 1;
+    if (input % 3 == 0)
+    {
+        row = row - 1;
+    }
+    if (col == -1)
+    {
+        col = 2;
+    }
+
+    if (grid[row][col] == 'X' || grid[row][col] == 'O')
+    {
+        cout << "l activated" << endl;
+        goto l;
+    }
+    else if (input >= 1 && input <= 9)
+    {
+        grid[row][col] = 'O';
     }
 }
