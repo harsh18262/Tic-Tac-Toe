@@ -1,15 +1,15 @@
 #include <iostream>
 #include <string.h>
 
-int winflagx = 0;
-int winflago = 0;
-int tie = 0;
+int winflagx = 0; // X winning flag
+int winflago = 0; // O winning flag
+int tie = 0;      //tieing flag
 
 char grid[3][3] = {{'1', '2', '3'},
                    {'4', '5', '6'},
                    {'7', '8', '9'}};
 
-char winning[8][3] = {{'1', '2', '3'},
+char winning[8][3] = {{'1', '2', '3'}, //winning conditions
                       {'4', '5', '6'},
                       {'7', '8', '9'},
                       {'1', '5', '9'},
@@ -18,11 +18,11 @@ char winning[8][3] = {{'1', '2', '3'},
                       {'2', '5', '8'},
                       {'3', '6', '9'}};
 
-void create_grid();
-void human_turn();  //Human is X
-void human_turn2(); //Human is O
-void check();
-void comp_turn();
+void create_grid(); //grid creation
+void human_turn();  //Human1 is X
+void human_turn2(); //Human2 is O
+void check();       //checks for winning and tieing
+void comp_turn();   //Computer is O
 //
 //--------------
 // 1 |  2 |  3 |
@@ -91,7 +91,6 @@ void create_grid()
 void human_turn()
 {
     int input;
-    //a:
     cout << "enter turn player 1" << endl;
     cin >> input;
     if (input != ' ')
@@ -110,7 +109,6 @@ void human_turn()
         if (grid[row][col] == 'X' || grid[row][col] == 'O')
         {
             cout << "that grid space is already taken" << endl;
-            //goto a;
             human_turn();
         }
         else if (input >= 1 && input <= 9)
@@ -142,7 +140,6 @@ void check()
         for (int j = 0; j <= 2; j++)
         {
             int winmov = winning[i][j] - '0';
-            // cout << "winning move = " << winmov << endl;
             int row = (winmov / 3);
             int col = (winmov % 3) - 1;
             if (winmov % 3 == 0)
@@ -153,12 +150,9 @@ void check()
             {
                 col = 2;
             }
-            //cout << "row = " << row << "col =" << col << endl;
             if (grid[row][col] == 'X')
             {
                 winflagx++;
-                //cout << "wiflag = " << winflag;
-                // cout << " k=  " << k << endl;
             }
             if (winflagx == 3)
             {
@@ -171,8 +165,6 @@ void check()
             if (grid[row][col] == 'O')
             {
                 winflago++;
-                //cout << "wiflag = " << winflag;
-                // cout << " k=  " << k << endl;
             }
             if (winflago == 3)
             {
@@ -194,8 +186,6 @@ void check()
 void comp_turn()
 {
 
-    //l:
-
     int input = (rand() % 9 + 1);
 
     int row = (input / 3);
@@ -211,9 +201,7 @@ void comp_turn()
 
     if (grid[row][col] == 'X' || grid[row][col] == 'O')
     {
-        // cout << "l activated" << endl;
         comp_turn();
-        // goto l;
     }
 
     else if (input >= 1 && input <= 9)
@@ -226,7 +214,7 @@ void comp_turn()
 void human_turn2()
 {
     int input;
-    //a:
+
     cout << "enter turn player 2" << endl;
     cin >> input;
     if (input != ' ')
@@ -245,7 +233,6 @@ void human_turn2()
         if (grid[row][col] == 'X' || grid[row][col] == 'O')
         {
             cout << "that grid space is already taken" << endl;
-            // goto a;
             human_turn2();
         }
         else if (input >= 1 && input <= 9)
