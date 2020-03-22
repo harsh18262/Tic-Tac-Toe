@@ -158,7 +158,8 @@ void check()
 
 void comp_turn()
 {
-l:
+    int tie=0;
+l:  if(tie<=9){
     int input = (rand() % 9 + 1);
 
     int row = (input / 3);
@@ -174,11 +175,20 @@ l:
 
     if (grid[row][col] == 'X' || grid[row][col] == 'O')
     {
-        cout << "l activated" << endl;
+       // cout << "l activated" << endl;
+        tie++;
         goto l;
     }
+    
     else if (input >= 1 && input <= 9)
     {
         grid[row][col] = 'O';
     }
+    }
+    else
+    {
+        cout<<"Tied\n";
+        exit(0);
+    }
+    
 }
