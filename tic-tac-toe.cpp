@@ -91,7 +91,7 @@ void create_grid()
 void human_turn()
 {
     int input;
-a:
+    //a:
     cout << "enter turn player 1" << endl;
     cin >> input;
     if (input != ' ')
@@ -110,7 +110,8 @@ a:
         if (grid[row][col] == 'X' || grid[row][col] == 'O')
         {
             cout << "that grid space is already taken" << endl;
-            goto a;
+            //goto a;
+            human_turn();
         }
         else if (input >= 1 && input <= 9)
         {
@@ -193,7 +194,7 @@ void check()
 void comp_turn()
 {
 
-l:
+    //l:
 
     int input = (rand() % 9 + 1);
 
@@ -211,8 +212,8 @@ l:
     if (grid[row][col] == 'X' || grid[row][col] == 'O')
     {
         // cout << "l activated" << endl;
-
-        goto l;
+        comp_turn();
+        // goto l;
     }
 
     else if (input >= 1 && input <= 9)
@@ -225,7 +226,7 @@ l:
 void human_turn2()
 {
     int input;
-a:
+    //a:
     cout << "enter turn player 2" << endl;
     cin >> input;
     if (input != ' ')
@@ -244,7 +245,8 @@ a:
         if (grid[row][col] == 'X' || grid[row][col] == 'O')
         {
             cout << "that grid space is already taken" << endl;
-            goto a;
+            // goto a;
+            human_turn2();
         }
         else if (input >= 1 && input <= 9)
         {
