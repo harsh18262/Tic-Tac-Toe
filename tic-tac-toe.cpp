@@ -3,6 +3,7 @@
 
 int winflagx = 0;
 int winflago = 0;
+int tie = 0;
 
 char grid[3][3] = {{'1', '2', '3'},
                    {'4', '5', '6'},
@@ -18,7 +19,8 @@ char winning[8][3] = {{'1', '2', '3'},
                       {'3', '6', '9'}};
 
 void create_grid();
-void human_turn(); //human is X
+void human_turn();  //Human is X
+void human_turn2(); //Human is O
 void check();
 void comp_turn();
 //
@@ -35,14 +37,39 @@ using namespace std;
 
 int main()
 {
-    while (true)
+    int z;
+    cout << "You want to play with \n1)AI\n2)Human\n";
+    cin >> z;
+    if (z == 1)
     {
+        while (true)
+        {
 
-        create_grid();
-        human_turn();
-        check();
-        comp_turn();
-        check();
+            create_grid();
+            human_turn();
+            check();
+            comp_turn();
+            check();
+        }
+    }
+    if (z == 2)
+    {
+        while (true)
+        {
+
+            create_grid();
+            human_turn();
+            check();
+            create_grid();
+            human_turn2();
+            check();
+        }
+    }
+    else
+    {
+        {
+            cout << "invalid input";
+        }
     }
 }
 
@@ -65,7 +92,7 @@ void human_turn()
 {
     int input;
 a:
-    cout << "enter turn" << endl;
+    cout << "enter turn player 1" << endl;
     cin >> input;
     if (input != ' ')
     {
@@ -88,6 +115,7 @@ a:
         else if (input >= 1 && input <= 9)
         {
             grid[row][col] = 'X';
+            tie++;
         }
 
         else
@@ -152,14 +180,21 @@ void check()
                 cout << "********O is the winnner********";
                 exit(0);
             }
+            if (tie >= 9)
+            {
+                create_grid();
+                cout << "********Tied********\n";
+                exit(0);
+            }
         }
     }
 }
 
 void comp_turn()
 {
-    int tie=0;
-l:  if(tie<=9){
+
+l:
+
     int input = (rand() % 9 + 1);
 
     int row = (input / 3);
@@ -175,20 +210,56 @@ l:  if(tie<=9){
 
     if (grid[row][col] == 'X' || grid[row][col] == 'O')
     {
-       // cout << "l activated" << endl;
-        tie++;
+        // cout << "l activated" << endl;
+
         goto l;
     }
-    
+
     else if (input >= 1 && input <= 9)
     {
         grid[row][col] = 'O';
+        tie++;
     }
-    }
-    else
+}
+
+void human_turn2()
+{
+    int input;
+a:
+    cout << "enter turn player 2" << endl;
+    cin >> input;
+    if (input != ' ')
     {
-        cout<<"Tied\n";
-        exit(0);
+        int row = (input / 3);
+        int col = (input % 3) - 1;
+        if (input % 3 == 0)
+        {
+            row = row - 1;
+        }
+        if (col == -1)
+        {
+            col = 2;
+        }
+
+        if (grid[row][col] == 'X' || grid[row][col] == 'O')
+        {
+            cout << "that grid space is already taken" << endl;
+            goto a;
+        }
+        else if (input >= 1 && input <= 9)
+        {
+            grid[row][col] = 'O';
+            tie++;
+        }
+
+        else
+        {
+            puts("invalid input");
+        }
     }
-    
+
+    else if (cin.get() == '\n')
+    {
+        cout << "please give input";
+    }
 }
