@@ -78,14 +78,14 @@ void create_grid()
 
     for (int row = 0; row <= 2; row++)
     {
-        puts("--------------");
+        cout << "--------------\n";
         for (int col = 0; col <= 2; col++)
         {
             cout << " " << grid[row][col] << " | ";
         }
         cout << endl;
     }
-    puts("--------------");
+    cout << "--------------\n";
 }
 
 void human_turn()
@@ -119,11 +119,9 @@ void human_turn()
 
         else
         {
-            puts("invalid input");
+            cout << "invalid input\n";
         }
     }
-
-
 }
 
 void check()
@@ -240,8 +238,7 @@ void human_turn2()
 
         else
         {
-            puts("invalid input");
+            cout << "invalid input\n";
         }
     }
-
 }

@@ -66,7 +66,7 @@ int main()
     else
     {
         {
-            printf("invalid input");
+            printf("invalid input\n");
         }
     }
 }
@@ -76,14 +76,14 @@ void create_grid()
 
     for (int row = 0; row <= 2; row++)
     {
-        puts("--------------");
+        printf("--------------\n");
         for (int col = 0; col <= 2; col++)
         {
             printf(" %c | ", grid[row][col]);
         }
         printf("\n");
     }
-    puts("--------------");
+    printf("--------------\n");
 }
 
 void human_turn()
@@ -117,7 +117,7 @@ void human_turn()
 
         else
         {
-            puts("invalid input");
+            printf("invalid input\n");
         }
     }
 }
@@ -236,7 +236,7 @@ void human_turn2()
 
         else
         {
-            puts("invalid input");
+            printf("invalid input\n");
         }
     }
 }
