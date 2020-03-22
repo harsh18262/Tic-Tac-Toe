@@ -123,10 +123,7 @@ void human_turn()
         }
     }
 
-    else if (cin.get() == '\n')
-    {
-        cout << "please give input";
-    }
+
 }
 
 void check()
@@ -247,8 +244,4 @@ void human_turn2()
         }
     }
 
-    else if (cin.get() == '\n')
-    {
-        cout << "please give input";
-    }
 }
