@@ -39,8 +39,8 @@ int main()
     /*printf is printing this
      _____ _        _____            _____        
     |_   _(_) ___  |_   _|_ _  ___  |_   _|__   ___ 
-      | | | |/ __|   | |/ _` |/ __|   | |/ _ \ / _ \
-      | | | | (__    | | (_| | (__    | | (_) |  __/
+     | | | |/ __|   | |/ _` |/ __|   | |/ _ \ / _ \
+     | | | | (__    | | (_| | (__    | | (_) |  __/
      |_| |_|\___|   |_|\__,_|\___|   |_|\___/ \___| */
 
     int z;
@@ -50,7 +50,7 @@ int main()
     {
         while (1)
         {
-
+            system("clear"); //clear screen after every move
             create_grid();
             human_turn();
             check();
@@ -58,14 +58,15 @@ int main()
             check();
         }
     }
-    if (z == 2)
+    else if (z == 2)
     {
         while (1)
         {
-
+            system("clear");
             create_grid();
             human_turn();
             check();
+            system("clear");
             create_grid();
             human_turn2();
             check();
@@ -151,34 +152,35 @@ void check()
             {
                 col = 2;
             }
-            if (grid[row][col] == 'X')
-            {
-                winflagx++;
-            }
-            if (winflagx == 3)
-            {
-
-                create_grid();
-                printf("********X is the winnner********");
-                exit(0);
-            }
-
-            if (grid[row][col] == 'O')
-            {
-                winflago++;
-            }
-            if (winflago == 3)
-            {
-
-                create_grid();
-                printf("********O is the winnner********");
-                exit(0);
-            }
             if (tie >= 9)
             {
                 create_grid();
                 printf("********Tied********");
                 exit(0);
+            }
+            else if (grid[row][col] == 'X')
+            {
+                winflagx++;
+
+                if (winflagx == 3)
+                {
+
+                    create_grid();
+                    printf("********X is the winnner********");
+                    exit(0);
+                }
+            }
+            else if (grid[row][col] == 'O')
+            {
+                winflago++;
+
+                if (winflago == 3)
+                {
+
+                    create_grid();
+                    printf("********O is the winnner********");
+                    exit(0);
+                }
             }
         }
     }
