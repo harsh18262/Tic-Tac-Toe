@@ -152,13 +152,8 @@ void check()
             {
                 col = 2;
             }
-            if (tie >= 9)
-            {
-                create_grid();
-                printf("********Tied********");
-                exit(0);
-            }
-            else if (grid[row][col] == 'X')
+
+            if (grid[row][col] == 'X')
             {
                 winflagx++;
 
@@ -183,6 +178,12 @@ void check()
                 }
             }
         }
+    }
+    if (tie >= 9)
+    {
+        create_grid();
+        printf("********Tied********");
+        exit(0);
     }
 }
 
