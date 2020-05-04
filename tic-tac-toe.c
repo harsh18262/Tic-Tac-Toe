@@ -42,7 +42,7 @@ int main()
      | | | |/ __|   | |/ _` |/ __|   | |/ _ \ / _ \
      | | | | (__    | | (_| | (__    | | (_) |  __/
      |_| |_|\___|   |_|\__,_|\___|   |_|\___/ \___| */
-
+    srand(clock());
     int z;
     printf("You want to play with \n1)AI\n2)Human\n");
     scanf("%d", &z);
